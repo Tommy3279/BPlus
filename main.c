@@ -144,7 +144,7 @@ static TaskHandle_t prov_request_task_handle = NULL;// Task handle for provision
 static void provisioning_request_task(void *pvParameter);
 
 
-#define FIREBASE_WEB_API_KEY_MAIN "AIzaSyDTtRXLnsYXLARXk_LBtd47Aegimp3D9XI" // << THAY THẾ KEY CỦA BẠN
+#define FIREBASE_WEB_API_KEY_MAIN "AIzaSyp3D9XI" // << THAY THẾ KEY CỦA BẠN
 #define FIREBASE_DATABASE_URL_MAIN "https://sample2us-8f23b-default-rtdb.firebaseio.com" // << THAY THẾ URL CỦA BẠN
 #define TEST_RTDB_PATH "/testNode" // Ví dụ path
 
