@@ -197,31 +197,6 @@ void display_compartments(compartment_t *comps, int num_compartments) {
     disp1color_UpdateFromBuff();
 }
 
-/*
-// Display all compartments on the LCD
-void display_compartments(compartment_t *compartments, int num_compartments) {
-    ESP_LOGI(TAG_DISPLAY, "Displaying compartments on LCD");
-    
-    // Clear the display buffer
-    ST7920_Clear();
-    disp1color_clearBuff();
-    ST7920_GraphicMode(1);
-    
-    // Draw header text
-    disp1color_printf(LEFT_COL_X, 2, FONTID_6X8M, "Hay chon mot tu:");
-    
-    // Draw each compartment row
-    int max_rows = 8;
-    int rows_to_draw = (num_compartments < max_rows) ? num_compartments : max_rows;
-    
-    for (int i = 0; i < rows_to_draw; i++) {
-        draw_compartment_row(i, &compartments[i]);
-    }
-
-    disp1color_UpdateFromBuff();
-}
-
-*/
 
 // Vẽ màn hình nhập SĐT
 static void draw_phone_input_screen(void) {
@@ -294,7 +269,7 @@ static void display_task(void *pvParameters) {
             ESP_LOGI(TAG_DISPLAY, "Received message: %s", message);
 
             // Phân tích và xử lý lệnh
-            if (strcmp(message, "State: 0") == 0) { //SHOW initializing screen
+            if (strcmp(message, "CMD_SHOW_INITIAL_SCREEN") == 0) { //SHOW initializing screen
                 draw_initial_screen();
             }else if (strcmp(message, "State: 2") == 0) {   //SHOW standby screen
                 draw_standby_screen();

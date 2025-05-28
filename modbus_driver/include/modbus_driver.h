@@ -40,12 +40,6 @@ int rs485_driver_send_data(uart_port_t uart_num, const uint8_t *data, size_t len
 int rs485_driver_read_data(uart_port_t uart_num, uint8_t *data, size_t len, TickType_t timeout_ticks);
 
 /**
- * @brief Chuyển đổi hướng truyền/nhận của MAX485.
- * @param direction Hướng RS485_DIR_TX hoặc RS485_DIR_RX.
- */
-void rs485_driver_set_direction(rs485_direction_t direction);
-
-/**
  * @brief Giải phóng tài nguyên driver RS485.
  * @param uart_num Số UART.
  * @return esp_err_t ESP_OK nếu thành công, ngược lại là lỗi.

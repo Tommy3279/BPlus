@@ -55,7 +55,8 @@ static esp_err_t _start_token_refresh(void); // Sẽ dùng ở bước sau
 
 
 
-
+//Hàm helper để đọc và ghi chuỗi vào NVS, hàm này sẽ được gọi từ các hàm khác trong rtdb_client.c
+//static esp_err_t _nvs_read_string(nvs_handle_t nvs_handle_param, const char* key, char* out_value, size_t max_len);
 esp_err_t _nvs_read_string(nvs_handle_t nvs_handle_param, const char* key, char* out_value, size_t max_len) {
     if (!out_value || max_len == 0) return ESP_ERR_INVALID_ARG;
     out_value[0] = '\0'; // Khởi tạo chuỗi rỗng
@@ -89,7 +90,7 @@ esp_err_t _nvs_write_string(nvs_handle_t nvs_handle_param, const char* key, cons
     return err;
 }
 
-// Hàm này sẽ được gọi từ task authentication_worker_task
+// Hàm này sẽ được gọi từ task authentication_worker_task, được gọi trong trường hợp cần xác thực thiết bị khi đã có thông tin xác thực trong NVS
 static esp_err_t _start_token_refresh() {
     if (strlen(s_web_api_key) == 0) {
         ESP_LOGE(TAG, "Web API Key not available for token refresh.");
@@ -215,7 +216,6 @@ static void rtdb_authentication_worker_task(void *pvParameter) {
     // rtdb_auth_task_handle = NULL; // Nếu bạn dùng task handle
     vTaskDelete(NULL); // Task tự xóa sau khi đã khởi tạo hành động xác thực (HTTP task)
 }
-
 
 
 

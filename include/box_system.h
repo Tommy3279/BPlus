@@ -78,9 +78,6 @@ typedef struct {
 #define RTDB_RESPONSE_PREVIEW_MAX_LEN 512 // Cho preview của RTDB GET response
 
 
-
-
-
 // ==========================================================================
 // Định nghĩa Sự kiện Hệ thống (System Events)
 // ==========================================================================

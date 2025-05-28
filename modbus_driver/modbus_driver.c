@@ -45,13 +45,6 @@ esp_err_t rs485_driver_init(uart_port_t uart_num, int tx_pin, int rx_pin, int ba
     return ESP_OK;
 }
 
-// Hàm này sẽ không có tác dụng gì trong trường hợp này,
-// nhưng vẫn giữ để API nhất quán.
-void rs485_driver_set_direction(rs485_direction_t direction) {
-    // Không cần điều khiển chân DE/RE
-    // ESP_LOGD(TAG, "Setting RS485 direction (no DE/RE control): %s",
-    //          (direction == RS485_DIR_TX) ? "TX" : "RX");
-}
 
 int rs485_driver_send_data(uart_port_t uart_num, const uint8_t *data, size_t len) {
     if (uart_num != s_uart_port_num) {
