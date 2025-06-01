@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include "modbus_driver.h"
 #include "box_system.h"
+
 // Định nghĩa các mã lệnh
 #define CMD_OPEN_MULTIPLE_LOCKS_SIMULTANEOUSLY  0x80 // Đồng thời mở nhiều khóa [cite: 4]
 #define CMD_CHANNEL_FLASH                       0x81 // Kênh nhấp nháy (LED) [cite: 4]
@@ -25,7 +26,22 @@
 #define DOOR_STATE_CLOSED                       0x01 // Cửa đóng [cite: 18]
 
 
+// Định nghĩa GPIO cho module MAX485
+#define UART_PORT UART_NUM_2
+#define UART_TX_PIN GPIO_NUM_17
+#define UART_RX_PIN GPIO_NUM_16
+//#define UART_RTS_PIN GPIO_NUM_18 // Hoặc chân GPIO điều khiển DE/RE của MAX485
 
+
+
+
+
+extern uart_port_t s_uart_num; 
+
+// Start Code mặc định [cite: 3]
+extern const uint8_t START_CODE[];
+
+extern TaskHandle_t rs485_RX_task_handle; // Task handle cho RS485 RX task
 
 /**
  * @brief Khởi tạo driver cho bo điều khiển khóa.
@@ -50,8 +66,8 @@ uint8_t lock_controller_calculate_checksum(const uint8_t *data, size_t len);
  * @param response Con trỏ tới cấu trúc để lưu phản hồi.
  * @return esp_err_t
  */
-esp_err_t lock_controller_open_single_lock(uint8_t board_address, uint8_t channel_number, lock_controller_response_t *response);
-
+//esp_err_t lock_controller_open_single_lock(uint8_t board_address, uint8_t channel_number, lock_controller_response_t *response);
+esp_err_t lock_controller_open_single_lock(uint8_t board_address, uint8_t channel_number);
 /**
  * @brief Gửi lệnh mở nhiều khóa cùng lúc.
  * @param board_address Địa chỉ của bo điều khiển.
